@@ -198,8 +198,8 @@ function findElement(elements: Element[], text: string, shouldSelectRightmostEle
     if (matches.length > 0) {
         let bestMatch = matches.reduce((previous, current) =>
             (previous === undefined ||
-            previous.threshold < current.threshold ||
-            (previous.threshold === current.threshold && Math.abs(previous.text.trim().length - condensedText.length) <= Math.abs(current.text.trim().length - condensedText.length)) ? current : previous), undefined);
+            current.threshold < previous.threshold ||
+            (current.threshold === previous.threshold && Math.abs(current.text.trim().length - condensedText.length) <= Math.abs(previous.text.trim().length - condensedText.length)) ? current : previous), undefined);
         return shouldSelectRightmostElement ? bestMatch.rightElement : bestMatch.leftElement;
     }
 
@@ -248,8 +248,8 @@ function findStartElements(elements: Element[]) {
         if (matches.length > 0) {
             let bestMatch = matches.reduce((previous, current) =>
                 (previous === undefined ||
-                previous.threshold < current.threshold ||
-                (previous.threshold === current.threshold && Math.abs(previous.text.trim().length - "ApplicationNo".length) <= Math.abs(current.text.trim().length - "ApplicationNo".length)) ? current : previous), undefined);
+                current.threshold < previous.threshold ||
+                (current.threshold === previous.threshold && Math.abs(current.text.trim().length - "ApplicationNo".length) <= Math.abs(previous.text.trim().length - "ApplicationNo".length)) ? current : previous), undefined);
             startElements.push(bestMatch.element);
         }
     }
